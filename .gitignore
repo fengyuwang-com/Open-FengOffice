@@ -1,0 +1,41 @@
+# Personal account config (email addresses)
+accounts.json
+accounts.local.*
+
+# OAuth tokens
+*.token
+tokens/
+
+# Binaries (download separately)
+ortie.exe
+ortie
+himalaya.exe
+himalaya.*
+ortie.x86_64-windows.*
+result/
+
+# Export config bundles (contains credentials)
+fengmail-config.json
+
+# Build artifacts
+*.zip
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Credentials (plaintext passwords)
+docs/credentials.md
+
+# SQL scripts with API keys/secrets
+fix_smtp.sql
+update_smtp.sql
+.env
+
+# Newsletter
+newsletter/.env
+newsletter/uploads/

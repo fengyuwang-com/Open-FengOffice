@@ -1,0 +1,82 @@
+services:
+  # ── Listmonk 应用 ──
+  app:
+    image: listmonk/listmonk:latest
+    container_name: listmonk_app
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    networks:
+      - listmonk
+    hostname: news.fengyuwang.com
+    depends_on:
+      db:
+        condition: service_healthy
+    command:
+      - sh
+      - -c
+      - >
+        ./listmonk --install --idempotent --yes --config '' &&
+        ./listmonk --upgrade --yes --config '' &&
+        ./listmonk --config ''
+
+    environment:
+      # ── 监听地址 ──
+      LISTMONK_app__address: 0.0.0.0:9000
+
+      # ── 数据库 ──
+      LISTMONK_db__host: db
+      LISTMONK_db__port: 5432
+      LISTMONK_db__user: ${LISTMONK_DB_USER:-listmonk}
+      LISTMONK_db__password: ${LISTMONK_DB_PASSWORD:-listmonk}
+      LISTMONK_db__database: listmonk
+      LISTMONK_db__ssl_mode: disable
+      LISTMONK_db__max_open: 25
+      LISTMONK_db__max_idle: 25
+      LISTMONK_db__max_lifetime: 300s
+
+      # ── SMTP 发信 (Resend) ──
+      LISTMONK_smtp__host: ${RESEND_SMTP_HOST:-smtp.resend.com}
+      LISTMONK_smtp__port: ${RESEND_SMTP_PORT:-587}
+      LISTMONK_smtp__username: ${RESEND_SMTP_USER:-resend}
+      LISTMONK_smtp__password: ${RESEND_API_KEY}
+      LISTMONK_smtp__from_email: ${NEWSLETTER_FROM_EMAIL:-fengyu@news.fengyuwang.com}
+      LISTMONK_smtp__tls_type: starttls
+      LISTMONK_smtp__max_conns: 10
+
+      # ── 管理员 ──
+      LISTMONK_ADMIN_USER: ${LISTMONK_ADMIN_USER}
+      LISTMONK_ADMIN_PASSWORD: ${LISTMONK_ADMIN_PASSWORD}
+
+      # ── 时区 ──
+      TZ: Asia/Hong_Kong
+
+    volumes:
+      - ./uploads:/listmonk/uploads:rw
+
+  # ── PostgreSQL ──
+  db:
+    image: postgres:17-alpine
+    container_name: listmonk_db
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5433:5432"
+    networks:
+      - listmonk
+    environment:
+      POSTGRES_USER: ${LISTMONK_DB_USER:-listmonk}
+      POSTGRES_PASSWORD: ${LISTMONK_DB_PASSWORD:-listmonk}
+      POSTGRES_DB: listmonk
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${LISTMONK_DB_USER:-listmonk}"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+    volumes:
+      - listmonk-db-data:/var/lib/postgresql/data
+
+networks:
+  listmonk:
+
+volumes:
+  listmonk-db-data:

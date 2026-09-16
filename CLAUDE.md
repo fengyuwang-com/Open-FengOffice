@@ -5,11 +5,11 @@
 ## 目录结构
 
 ```
-FengOffice/
+~/FengOffice/
 ├── fengmail.py            # 主 CLI（IMAP 邮件 + SMTP 发送/回复）
 ├── setup.py               # 跨平台安装/迁移
+├── ortie.exe              # OAuth 认证桥（Git LFS，不直接调用）
 ├── docker-compose.yml     # Twenty CRM 部署
-├── newsletter/                    # Newsletter 系统 (Listmonk)
 ├── .env                   # CRM 环境变量（gitignored）
 ├── accounts.json          # 邮箱配置（gitignored）
 ├── newsletter/                    # Newsletter 系统 (Listmonk)
@@ -26,14 +26,13 @@ FengOffice/
 │   ├── newsletter-architecture.md  # Newsletter 系统 & 内容枢纽架构
 │   ├── email-classification.md     # 四级邮件分类体系
 │   ├── requirements.md             # CRM 功能需求
-│   └── interview-prep.md           # 面试准备入口
 └── CLAUDE.md              # 本文件
 
 ## 快速启动
 
 ```bash
 # 邮件：查账号
-cd FengOffice && python fengmail.py list-accounts
+cd ~/FengOffice && python fengmail.py list-accounts
 
 # CRM：启动
 docker compose up -d && watch docker compose ps
@@ -78,7 +77,7 @@ python fengmail.py <账号> read <UID>
 
 ```python
 import sys, os, imaplib, email
-sys.path.insert(0, r'FengOffice')
+sys.path.insert(0, os.path.expanduser('~/FengOffice'))
 from fengmail import connect, load_accounts
 
 accounts = load_accounts()
@@ -165,7 +164,7 @@ Gmail 新账号需先在网页设置开 IMAP。
 ### 启动
 
 ```bash
-cd FengOffice && docker compose up -d
+cd ~/FengOffice && docker compose up -d
 # 等 server 状态从 (starting) → (healthy)，首次需 ~60 秒
 # 访问 http://localhost:3002
 ```
@@ -300,6 +299,31 @@ curl -s -X POST http://localhost:3002/graphql \
 - 岗位含 "Financial Planner"、"Wealth Management"、"Private Banking"、"财富管理"、"理财顾问" 等关键词
 - IANG 签证相关的实习/招聘（基本是保险销售套路）
 - 公司名或联系人经查证属于保险行业的
+
+## 简历系统
+
+FengOffice 包含一套完整的简历体系，位于 `docs/resume/`（源文件在 `~/Resume/`）：
+
+| 版本 | 方向 | 文件 |
+|------|------|------|
+| 一面版（通用） | 营销+技术综合 | `resume_professional.html` |
+| marketing | 品牌/市场/增长 | `resume_marketing.html` |
+| tech | 技术/产品/AI | `resume_tech.html` |
+| investment | 投资/研究/分析 | `resume_investment.html` |
+
+投递不同岗位时选对应版本。搭配 `docs/interview/self-knowledge.md` 使用——先知道自己是谁，再选简历版本。
+
+## 面试知识库
+
+面试准备系统位于 `docs/interview/`，三份文档分工明确：
+
+| 文档 | 内容 | 用法 |
+|------|------|------|
+| [self-knowledge.md](docs/interview/self-knowledge.md) | 自我认知：价值观、优势劣势、适合的工作类型 | **每一次面试前必读**，提醒自己是谁 |
+| [preparation-framework.md](docs/interview/preparation-framework.md) | 7步面试准备框架（心态→研究→基调→故事→问题→对话→跟进） | 接到面试后按流程走 |
+| [<company>-ai-20260723.md](docs/interview/<company>-ai-20260723.md) | <company> AI / AI City Builder 专项准备 | 2026年7月23日面试专用 |
+
+核心原则：不装不演，正常交流。价值不需要任何公司的 offer 来证明。
 
 ## 备选工具
 

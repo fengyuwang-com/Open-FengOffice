@@ -219,7 +219,7 @@ podman run --rm \
 ### 2.1 部署结构
 
 ```
-FengOffice\
+~/FengOffice/
 ├── .env                     # 所有环境变量（gitignored）
 ├── docker-compose.yml       # 4 个服务
 └── docs/requirements.md     # 功能需求
@@ -287,7 +287,7 @@ curl -s http://localhost:3002/client-config | python3 -m json.tool
 # 1. 暂时启用迁移
 # 编辑 .env: DISABLE_DB_MIGRATIONS=false
 # 2. 启动（迁移 + 升级需要 30-60 秒）
-cd FengOffice && docker compose up -d
+cd ~/FengOffice && docker compose up -d
 
 # 3. 确认 healthy
 watch docker compose ps
@@ -298,7 +298,7 @@ watch docker compose ps
 # 重启 server: docker compose restart server
 
 # 后续启动（已有数据库，跳过迁移）
-cd FengOffice && docker compose up -d
+cd ~/FengOffice && docker compose up -d
 ```
 
 ### 2.5 登录
@@ -391,9 +391,10 @@ curl -s -X POST http://localhost:3002/graphql \
 ### 3.1 结构
 
 ```
-FengOffice\
+~/FengOffice/
 ├── fengmail.py          # 主 CLI（Python，IMAP via ortie OAuth）
-├── setup.py             # 跨平台安装/迁移（自动下载 ortie）
+├── ortie.exe            # OAuth 认证桥（Git LFS 管理）
+├── setup.py             # 跨平台安装/迁移
 ├── accounts.json        # 账号配置（gitignored）
 ├── docker-compose.yml   # Twenty CRM 部署（合并自 FengCRM）
 ├── .env                 # CRM 环境变量（gitignored）
@@ -403,7 +404,7 @@ FengOffice\
     └── requirements.md           # CRM 功能需求
 ```
 
-> 注意：邮件和 CRM 原为独立项目（FengMail + FengCRM），已合并为 FengOffice。操作时路径统一在 `FengOffice\` 下。
+> 注意：邮件和 CRM 原为独立项目（FengMail + FengCRM），已合并为 FengOffice。操作时路径统一在 `~/FengOffice/` 下。
 
 ### 3.2 账号管理
 
@@ -469,7 +470,7 @@ python fengmail.py 账号名 delete <UID>
 
 ```python
 import sys, os, imaplib, email
-sys.path.insert(0, r'FengOffice')
+sys.path.insert(0, os.path.expanduser('~/FengOffice'))
 from fengmail import connect, load_accounts
 
 accounts = load_accounts()

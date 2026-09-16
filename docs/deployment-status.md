@@ -70,7 +70,7 @@
 | # | 任务 | 状态 | 备注 |
 |---|------|------|------|
 | 5.1 | 测试发送测试邮件 | ⬜ | Listmonk UI → Campaigns → Send Test |
-| 5.2 | 确认收到 | ⬜ | 检查你的收件箱 |
+| 5.2 | 确认收到 | ⬜ | 检查 account1/ account2 收件箱 |
 | 5.3 | 创建第一个 Newsletter 模板 | ⬜ | Listmonk UI → Templates |
 
 ---

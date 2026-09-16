@@ -300,31 +300,6 @@ curl -s -X POST http://localhost:3002/graphql \
 - IANG 签证相关的实习/招聘（基本是保险销售套路）
 - 公司名或联系人经查证属于保险行业的
 
-## 简历系统
-
-FengOffice 包含一套完整的简历体系，位于 `docs/resume/`（源文件在 `~/Resume/`）：
-
-| 版本 | 方向 | 文件 |
-|------|------|------|
-| 一面版（通用） | 营销+技术综合 | `resume_professional.html` |
-| marketing | 品牌/市场/增长 | `resume_marketing.html` |
-| tech | 技术/产品/AI | `resume_tech.html` |
-| investment | 投资/研究/分析 | `resume_investment.html` |
-
-投递不同岗位时选对应版本。搭配 `docs/interview/self-knowledge.md` 使用——先知道自己是谁，再选简历版本。
-
-## 面试知识库
-
-面试准备系统位于 `docs/interview/`，三份文档分工明确：
-
-| 文档 | 内容 | 用法 |
-|------|------|------|
-| [self-knowledge.md](docs/interview/self-knowledge.md) | 自我认知：价值观、优势劣势、适合的工作类型 | **每一次面试前必读**，提醒自己是谁 |
-| [preparation-framework.md](docs/interview/preparation-framework.md) | 7步面试准备框架（心态→研究→基调→故事→问题→对话→跟进） | 接到面试后按流程走 |
-| [<company>-ai-20260723.md](docs/interview/<company>-ai-20260723.md) | <company> AI / AI City Builder 专项准备 | 2026年7月23日面试专用 |
-
-核心原则：不装不演，正常交流。价值不需要任何公司的 offer 来证明。
-
 ## 备选工具
 
 **portedem**：1000 次/月限制，每个操作计 1 次。

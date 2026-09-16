@@ -31,8 +31,8 @@
 | 场景 | 识别线索 | 真实示例 |
 |------|----------|----------|
 | **面试邀请（真人写的）** | 发件人 @公司域名，个人署名，非模板 | 【已脱敏】 — Interview Invitation for Sales Executive |
-| **直接招聘 / 挖人** | 真人 HR 直接发邮件，无平台转发 | 【已脱敏】 @<domain> — AI Interview 提醒 |
-| **需要回复的对话** | 有来有回，不是单向通知 | Life Code Limited 对话（account3） |
+| **直接招聘 / 挖人** | 真人 HR 直接发邮件，无平台转发 | <recruiter> @<company>.com — AI Interview 提醒 |
+| **需要回复的对话** | 有来有回，不是单向通知 | 某公司对话（account3） |
 | **熟人 / 同事私信** | 实名个人邮箱发来 | 【已脱敏】 (【已脱敏】) — Summer Internship |
 | **LinkedIn 真人请求** | 有真实姓名的邀请 | 【已脱敏】 |
 
@@ -61,8 +61,8 @@
 |------|----------|------|
 | **API / 服务申请结果** | 涉及服务开通/被拒 | Webull OpenAPI 申请未通过 |
 | **账户安全警告** | 安全相关，需确认是否本人操作 | OpenRouter 新设备登录、Google 安全提醒 |
-| **流程自动反馈** | 系统的自动反馈 | <平台> 反馈问卷 |
-| **流程状态更新** | 明确的状态变化 | <平台> 状态变更通知 |
+| **面试反馈（招聘系统）** | 面试后的正式反馈 | 某公司面试反馈问卷 |
+| **求职状态关键更新** | 明确的状态变化 | 某公司申请状态更新 |
 
 **响应**：在报告中列出标题，一句话说明影响，不展开正文。
 
@@ -76,13 +76,13 @@
 |------|----------|------|
 | **🐶 保险狗** | 保险公司域名（yflife 等），"Financial Planner" 等保险岗 | EY Secretary @yflife.com.hk — 看起来像面试，实际是保险销售招募 |
 | **求职平台自动回复** | @broadbean.net noreply，"Re: XXXX/SEEK/姓名/P" 格式的自动通知，收到 recruiter 查看申请时触发，不是真回复 | 【已脱敏】、【已脱敏】、【已脱敏】、【已脱敏】 等全系列 |
-| **平台申请确认** | Workable、Greenhouse 自动确认 | <公司> 申请确认 |
+| **招聘平台投递确认** | Workable、Greenhouse 自动确认 | 示例公司 A / B / C 申请确认 |
 | **证券交易所通知** | 券商系统自动通知、月结单 | <券商> Service <service@broker.example> |
 | **加密货币交易所** | OKX、HashKey Exchange 等交易平台通知 | OKX <updates@okx.com> |
 | **工具/平台更新通知** | Ollama、OpenRouter、Docker、Trae、AlfredCamera 等更新邮件 | Ollama <hello@ollama.com> |
 | **游戏平台** | Epic Games 等游戏通知 | Epic Games <help@acct.epicgames.com> |
 | **域名/注册商** | GNAME、Cloudflare 域名管理通知 | GNAME <noreply@share-dns.net> |
-| **流程体验调查** | 系统的自动问卷 | <平台> 反馈问卷 |
+| **面试体验调查** | 招聘系统的自动问卷 | 某公司面试反馈问卷 |
 | **证券平台系统通知** | [登入系统]、[执行交易]、Asset Daily Statement | Webull 大量重复通知 |
 | **订单 / 收据** | 平台自动开具 | McDonald's、Epic Games |
 | **学校 / 机构周报** | 批量发送的 newsletter | <机构> Career Center weekly |
